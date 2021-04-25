@@ -1,8 +1,7 @@
-import 'dart:async';
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:website/pages/home.dart';
+import 'package:get/get.dart';
+import 'package:website/controllers/MenuController.dart';
+import 'package:website/ui/pages/home.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,12 +11,33 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    var home = HomePage(title: 'Home');
+    Get.put(MenuController());
+    return GetMaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(title: 'Flutter Demo Home Page'),
+      initialRoute: '/introduction',
+      getPages: [
+        GetPage(
+          name: '/introduction',
+          page: () => home,
+          transition: Transition.fadeIn,
+        ),
+        GetPage(
+          name: '/meetinglog',
+          page: () => home,
+          transition: Transition.fadeIn,
+        ),
+        GetPage(
+          name: '/contribution',
+          page: () => home,
+          transition: Transition.fadeIn,
+        ),
+      ],
     );
   }
 }
