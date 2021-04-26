@@ -1,10 +1,16 @@
+import 'dart:async';
+
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MenuController extends GetxController {
+  static MenuController get to => Get.find();
   RxInt _selectedIndex = 0.obs;
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _eventBloc = MenuEventBloc();
+  MenuEventBloc get eventBloc => _eventBloc;
+  VoidCallback? toggleListener;
 
   int get selectedIndex => _selectedIndex.value;
   List<String> get menuItems =>
@@ -39,4 +45,22 @@ class MenuController extends GetxController {
         Get.toNamed('/');
     }
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 }
+
+class MenuEventBloc {
+  final StreamController<MenuEvent> _eventSubject =
+      StreamController<MenuEvent>();
+  Stream<MenuEvent> get stream => _eventSubject.stream;
+  Sink<MenuEvent> get sink => _eventSubject.sink;
+
+  void dispose() {
+    _eventSubject.close();
+  }
+}
+
+enum MenuEvent { TOGGLE_APPBAR }

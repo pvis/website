@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:website/ui/pages/introduction/first_frame.dart';
 
 class IntroductionPage extends StatelessWidget {
   final ScrollController _controller = ScrollController();
@@ -27,6 +28,7 @@ class IntroductionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _height = MediaQuery.of(context).size.height;
+    _height = _height < 600 ? 600 : _height;
 
     if (_cur != 0) {
       if (_timer != null && _timer!.isActive) _timer!.cancel();
@@ -69,9 +71,13 @@ class IntroductionPage extends StatelessWidget {
             controller: _controller,
             child: Column(
               children: [
-                Container(
-                  color: Colors.red,
-                  height: _height,
+                SingleChildScrollView(
+                  child: Container(
+                    color: Colors.red,
+                    height: _height,
+                    width: double.infinity,
+                    child: FirstFrame(),
+                  ),
                 ),
                 Container(
                   color: Colors.green,

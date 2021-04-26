@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
+import 'package:website/controllers/MenuController.dart';
+import 'package:website/ui/components/menu_item.dart';
 
 class ExpandableAppBar extends StatefulWidget {
-  _ExpandableAppBarState expandedView = _ExpandableAppBarState();
-
+  final MenuController controller;
+  ExpandableAppBar({required this.controller});
   @override
-  _ExpandableAppBarState createState() => expandedView;
+  _ExpandableAppBarState createState() => _ExpandableAppBarState();
 }
 
 class _ExpandableAppBarState extends State<ExpandableAppBar>
@@ -15,11 +17,11 @@ class _ExpandableAppBarState extends State<ExpandableAppBar>
   bool isTaped = false;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
     controller = AnimationController(
-        duration: const Duration(milliseconds: 300), vsync: this);
-    animation = Tween(begin: 0.0, end: 300.0).animate(
+        duration: const Duration(milliseconds: 400), vsync: this);
+    animation = Tween(begin: 0.0, end: 400.0).animate(
       CurvedAnimation(
         parent: controller!,
         curve: Interval(
@@ -29,13 +31,13 @@ class _ExpandableAppBarState extends State<ExpandableAppBar>
         ),
       ),
     )..addListener(() {
-        setState(() {
-          // the state that has changed here is the animation object’s value
-        });
+        setState(() {});
       });
+
+    widget.controller.toggleListener = toggle;
   }
 
-  void tappedEvent() {
+  void toggle() {
     if (!isTaped) {
       controller!.forward();
       isTaped = !isTaped;
@@ -48,58 +50,36 @@ class _ExpandableAppBarState extends State<ExpandableAppBar>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: () {
+        toggle();
+      },
       child: Material(
-        elevation: 50.0,
         color: Colors.transparent,
         child: ClipPath(
           clipper: ArcClipper(),
           child: Container(
             height: animation!.value,
-            decoration: BoxDecoration(
-                color: Colors.blue,
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Colors.blue, Colors.blueAccent],
-                  tileMode:
-                      TileMode.repeated, // repeats the gradient over the canvas
+            color: Colors.black,
+            child: Column(
+              children: List.generate(
+                widget.controller.menuItems.length,
+                (index) => Expanded(
+                  flex: 1,
+                  child: Container(
+                    child: Center(
+                      child: MenuItem(
+                        text: widget.controller.menuItems[index],
+                        isActive: index == widget.controller.selectedIndex,
+                        press: widget.controller.callback[index],
+                      ),
+                    ),
+                  ),
                 ),
-                borderRadius: BorderRadius.vertical(
-                    bottom: Radius.circular(animation!.value / 10))),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Icon(
-                    Icons.expand_less,
-                    color: Colors.white,
-                    size: (animation!.value / 300.0) * 50.0,
-                  ),
-                  Text(
-                    'Click to minimize',
-                    style: new TextStyle(
-                        fontSize: (animation!.value / 300.0) * 14.0,
-                        color: Colors.white70),
-                  ),
-                  SizedBox(
-                    height: (animation!.value / 300.0) * 20.0,
-                  ),
-                  Text(
-                    '\"A man\'s measure is his will.\"',
-                    style: TextStyle(
-                        fontSize: (animation!.value / 300.0) * 16.0,
-                        fontStyle: FontStyle.italic,
-                        color: Colors.white),
-                  )
-                ],
-              ),
+              ).toList(),
             ),
           ),
         ),
       ),
-      onTap: () {
-        tappedEvent();
-      },
     );
   }
 }
