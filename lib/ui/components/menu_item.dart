@@ -50,8 +50,8 @@ class _MenuItemState extends State<MenuItem> {
         child: Text(
           widget.text,
           style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
+            color: Colors.black,
+            fontSize: 20,
             fontFamily: 'NotoSans',
             fontWeight: widget.isActive ? FontWeight.w500 : FontWeight.normal,
           ),

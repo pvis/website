@@ -73,7 +73,7 @@ class IntroductionPage extends StatelessWidget {
               children: [
                 SingleChildScrollView(
                   child: Container(
-                    color: Colors.red,
+                    color: Colors.white,
                     height: _height,
                     width: double.infinity,
                     child: FirstFrame(),

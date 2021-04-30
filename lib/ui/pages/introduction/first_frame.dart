@@ -7,26 +7,47 @@ class FirstFrame extends StatelessWidget {
       constraints: BoxConstraints(maxWidth: 600),
       child: Container(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 120, 0, 36),
+            SizedBox(height: 120),
+            Center(
               child: Text(
                 'Welcome to PVIS',
                 style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 36,
                     fontWeight: FontWeight.bold),
               ),
             ),
-            ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: 600),
-              child: Text(
-                'Stay updated with the newest information and development stories, case studies, and insights shared by PVIS Team',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                ),
-                textAlign: TextAlign.center,
+            Expanded(
+              child: Stack(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Container(),
+                        // child: Image.asset('assets/fig1.png'),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(
+                                  MediaQuery.of(context).size.height)),
+                          child: Image.asset(
+                            'assets/fig1.png',
+                            fit: BoxFit.fitHeight,
+                            height: MediaQuery.of(context).size.height,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],

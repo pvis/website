@@ -10,21 +10,20 @@ class HeaderMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('build');
     return Responsive.isDesktop(context)
         ? Obx(
             () => Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 20),
-                  child: Text('PVIS',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26,
-                          fontWeight: FontWeight.w400)),
-                ),
+                SizedBox(width: 15),
+                Icon(Icons.ac_unit),
+                SizedBox(width: 10),
+                Text('PVIS',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold)),
                 Expanded(
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
