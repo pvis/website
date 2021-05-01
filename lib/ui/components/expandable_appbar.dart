@@ -59,7 +59,7 @@ class _ExpandableAppBarState extends State<ExpandableAppBar>
           clipper: ArcClipper(),
           child: Container(
             height: animation!.value,
-            color: Colors.black,
+            color: Colors.white,
             child: Column(
               children: List.generate(
                 widget.controller.menuItems.length,

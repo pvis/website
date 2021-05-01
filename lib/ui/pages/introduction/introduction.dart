@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:website/ui/common/responsive.dart';
 import 'package:website/ui/pages/introduction/first_frame.dart';
 import 'package:website/ui/pages/introduction/second_frame.dart';
 import 'package:website/ui/pages/introduction/thrid_frame.dart';
@@ -75,15 +76,16 @@ class IntroductionPage extends StatelessWidget {
               children: [
                 SingleChildScrollView(
                   child: Container(
-                    color: Colors.white,
                     height: _height,
                     width: double.infinity,
-                    child: FirstFrame(),
+                    child: Padding(
+                        padding: EdgeInsets.only(
+                            top: Responsive.isDesktop(context) ? 80 : 60),
+                        child: FirstFrame()),
                   ),
                 ),
                 SingleChildScrollView(
                   child: Container(
-                    color: Colors.red,
                     height: _height,
                     width: double.infinity,
                     child: SecondFrame(),
@@ -91,7 +93,6 @@ class IntroductionPage extends StatelessWidget {
                 ),
                 SingleChildScrollView(
                   child: Container(
-                    color: Colors.red,
                     height: _height,
                     width: double.infinity,
                     child: ThirdFrame(),
