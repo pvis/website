@@ -7,6 +7,7 @@ class Header extends StatelessWidget {
     return Container(
       child: Container(
         height: 80,
+        // color: Color(0xff3474e0),
         child: HeaderMenu(),
       ),
     );
