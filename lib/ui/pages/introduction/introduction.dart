@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:website/ui/pages/introduction/first_frame.dart';
+import 'package:website/ui/pages/introduction/second_frame.dart';
+import 'package:website/ui/pages/introduction/thrid_frame.dart';
 
 class IntroductionPage extends StatelessWidget {
   final ScrollController _controller = ScrollController();
@@ -79,17 +81,21 @@ class IntroductionPage extends StatelessWidget {
                     child: FirstFrame(),
                   ),
                 ),
-                Container(
-                  color: Colors.green,
-                  height: _height,
+                SingleChildScrollView(
+                  child: Container(
+                    color: Colors.red,
+                    height: _height,
+                    width: double.infinity,
+                    child: SecondFrame(),
+                  ),
                 ),
-                Container(
-                  color: Colors.blue,
-                  height: _height,
-                ),
-                Container(
-                  color: Colors.black,
-                  height: _height,
+                SingleChildScrollView(
+                  child: Container(
+                    color: Colors.red,
+                    height: _height,
+                    width: double.infinity,
+                    child: ThirdFrame(),
+                  ),
                 ),
               ],
             ),

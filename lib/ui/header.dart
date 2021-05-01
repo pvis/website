@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:website/ui/common/responsive.dart';
-import 'package:website/ui/components/expandable_appbar.dart';
 import 'package:website/ui/components/header_menu.dart';
 
 class Header extends StatelessWidget {
