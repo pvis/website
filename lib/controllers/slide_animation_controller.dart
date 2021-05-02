@@ -12,10 +12,8 @@ class SlideAnimationController extends GetxController {
   }
 
   final List<String> images = [
-    'https://images.unsplash.com/photo-1546555648-fb7876c40c58?ixlib=rb-1.2.1&auto=format&fit=crop&w=1055&q=80',
-    'https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-    'https://images.unsplash.com/photo-1560185008-186576e0f1e2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
-    'https://images.unsplash.com/photo-1560448204-61dc36dc98c8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
+    'assets/personal_infotainment.png',
+    'assets/personal_infotainment.png',
   ];
 
   final List<Color> colors = [

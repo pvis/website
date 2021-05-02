@@ -1,17 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:website/constants/mobile_page.dart';
 import 'package:website/constants/web_page.dart';
-import 'package:website/controllers/slide_animation_controller.dart';
 import 'package:website/ui/common/responsive.dart';
-import 'dart:math';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
-import 'package:website/ui/pages/introduction/page_indicator.dart';
+class SlideTwo extends StatefulWidget {
+  @override
+  _SlideTwoState createState() => _SlideTwoState();
+}
 
-class SlideTwo extends GetView<SlideAnimationController> {
-  final _pageController = PageController();
-  final _colorController = PageController();
-  final _title = <String>['Personal', 'Public'];
+class _SlideTwoState extends State<SlideTwo> {
+  final _player = YoutubePlayerControllerProvider(
+    // Passing controller to widgets below.
+    controller: YoutubePlayerController(
+      initialVideoId: 'CxMvQkcdPl8',
+      params: const YoutubePlayerParams(
+        startAt: Duration(minutes: 1, seconds: 36),
+        showControls: true,
+        showFullscreenButton: false,
+        desktopMode: true,
+        privacyEnhanced: true,
+        useHybridComposition: false,
+      ),
+    ),
+    child: YoutubePlayerIFrame(),
+  );
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var mobilePage = Responsive.isMobile(context);
@@ -23,36 +42,19 @@ class SlideTwo extends GetView<SlideAnimationController> {
         child: Stack(
           children: [
             //background
-            Align(
-              alignment: Alignment.topLeft,
-              child: Transform.rotate(
-                angle: pi,
-                child: Container(
-                  height: mobilePage
-                      ? height * MobilePage.backgroundColorHeightFactor
-                      : height * WebPage.backgroundColorHeightFactor,
-                  width: mobilePage
-                      ? height * MobilePage.backgroundColorWidthFactor
-                      : width * WebPage.backgroundColorWidthFactor,
-                  child: PageView(
-                    physics: NeverScrollableScrollPhysics(),
-                    scrollDirection: Axis.vertical,
-                    controller: _colorController,
-                    children: controller.colors
-                        .map(
-                          (e) => Container(
-                            color: e,
-                          ),
-                        )
-                        .toList(),
-                  ),
-                ),
-              ),
+            Container(
+              height: mobilePage
+                  ? height * MobilePage.backgroundColorHeightFactor
+                  : height * WebPage.backgroundColorHeightFactor,
+              width: mobilePage
+                  ? height * MobilePage.backgroundColorWidthFactor
+                  : width * WebPage.backgroundColorWidthFactor,
+              color: Colors.yellow,
             ),
             //image
             Align(
               alignment:
-                  mobilePage ? MobilePage.imageAlign : WebPage.imageAlign,
+                  mobilePage ? MobilePage.youtubeAlign : WebPage.youtubeAlign,
               child: Container(
                 height: mobilePage
                     ? height * MobilePage.imageHeightFactor
@@ -60,88 +62,24 @@ class SlideTwo extends GetView<SlideAnimationController> {
                 width: mobilePage
                     ? width * MobilePage.imageWidthFactor
                     : width * WebPage.imageWidthFactor,
-                child: PageView(
-                  physics: NeverScrollableScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  controller: _pageController,
-                  children: controller.images
-                      .map(
-                        (e) => Container(
-                          child: Image.network(
-                            e,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      )
-                      .toList(),
-                ),
+                child: _player,
               ),
             ),
-            Obx(
-              () => Align(
-                alignment: mobilePage
-                    ? MobilePage.headTextAlign
-                    : WebPage.headTextAlign,
-                child: Container(
-                  width: width * 0.5,
-                  child: Text(
-                    _title[controller.idx],
-                    style: TextStyle(
-                      fontSize: mobilePage
-                          ? MobilePage.headTextFontSize
-                          : WebPage.headTextFontSize,
-                      fontFamily: "Times New Roman",
-                    ),
-                  ),
-                ),
-              ),
-            ),
+
             Align(
               alignment:
-                  mobilePage ? MobilePage.subTextAlign : WebPage.subTextAlign,
+                  mobilePage ? MobilePage.headTextAlign : Alignment(-0.8, -0.6),
               child: Container(
-                height: 100.0,
-                width:
-                    mobilePage ? MobilePage.subTextContainerWidth : width * 0.5,
                 child: Text(
-                  'Many services.',
+                  'PVIS Concepts',
                   style: TextStyle(
-                    fontSize: 25.0,
-                    wordSpacing: 3.0,
-                    fontWeight: FontWeight.w300,
+                    fontSize: mobilePage
+                        ? MobilePage.headTextFontSize
+                        : WebPage.headTextFontSize,
+                    fontFamily: 'Times New Roman',
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
-            ),
-            Align(
-              alignment: Alignment(0.72, 0.92),
-              child: PageIndicator(
-                prevButtonTap: () {
-                  var index = controller.idx - 1;
-                  if (index < 0) {
-                    index = 0;
-                  }
-                  controller.setIdx(index);
-                  _pageController.animateToPage(index,
-                      duration: Duration(milliseconds: 500),
-                      curve: Curves.easeOut);
-                  _colorController.animateToPage(index,
-                      duration: Duration(milliseconds: 500),
-                      curve: Curves.easeOut);
-                },
-                nextButtonTap: () {
-                  var index = controller.idx + 1;
-                  if (index > 1) {
-                    index = 1;
-                  }
-                  controller.setIdx(index);
-                  _pageController.animateToPage(index,
-                      duration: Duration(milliseconds: 500),
-                      curve: Curves.easeOut);
-                  _colorController.animateToPage(index,
-                      duration: Duration(milliseconds: 500),
-                      curve: Curves.easeOut);
-                },
               ),
             ),
           ],

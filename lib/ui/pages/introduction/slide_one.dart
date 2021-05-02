@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:math';
 import 'package:website/controllers/slide_animation_controller.dart';
+import 'package:website/ui/common/arc_clipper.dart';
 import 'package:website/ui/common/responsive.dart';
 
 class SlideOne extends GetView<SlideAnimationController> {
@@ -22,7 +23,7 @@ class SlideOne extends GetView<SlideAnimationController> {
                     Container(
                       height: height - 80,
                       child: Image.asset(
-                        'assets/background_2.png',
+                        'assets/background_1.png',
                         fit: BoxFit.fitWidth,
                         width: width,
                       ),
@@ -35,14 +36,22 @@ class SlideOne extends GetView<SlideAnimationController> {
         : Container(
             child: Stack(
               children: [
-                Container(
-                    color: Colors.blue, width: width, height: height * 0.75),
+                ClipPath(
+                  clipper: ArcClipper(),
+                  child: Container(
+                      color: Color(0xffa3cfec),
+                      width: width,
+                      height: height * 0.75),
+                ),
                 Align(
                   alignment: Alignment(0, 1),
                   child: Container(
                     width: min(height * 0.8, width * 0.8),
                     height: height * 0.6,
-                    color: Colors.red,
+                    // color: Colors.red,
+                    child: Image.asset(
+                      'assets/background_2.png',
+                    ),
                   ),
                 ),
               ],

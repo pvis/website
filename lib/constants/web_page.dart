@@ -4,6 +4,7 @@ class WebPage {
   static const double backgroundColorHeightFactor = 1.0;
   static const double backgroundColorWidthFactor = 0.5;
   static const Alignment imageAlign = Alignment(0.6, 0.0);
+  static const Alignment youtubeAlign = Alignment(0.6, 0.5);
   static const double imageHeightFactor = 0.65;
   static const double imageWidthFactor = 0.5;
   static const Alignment headTextAlign = Alignment(-0.60, -0.3);

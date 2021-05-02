@@ -4,6 +4,7 @@ class MobilePage {
   static const double backgroundColorHeightFactor = 0.75;
   static const double backgroundColorWidthFactor = 0.63;
   static const Alignment imageAlign = Alignment(0.0, 0.5);
+  static const Alignment youtubeAlign = Alignment(0.0, 0.5);
   static const double imageHeightFactor = 0.35;
   static const double imageWidthFactor = 0.78;
   static const Alignment headTextAlign = Alignment(-0.45, -0.60);

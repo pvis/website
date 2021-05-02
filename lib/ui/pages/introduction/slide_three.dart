@@ -57,7 +57,7 @@ class SlideThree extends GetView<SlideAnimationController> {
               alignment: mobilePage ? MobilePage.imageAlign : Alignment(0, 0.3),
               child: Container(
                 height: mobilePage
-                    ? height * MobilePage.imageHeightFactor
+                    ? height * 0.45
                     : height * WebPage.imageWidthFactor,
                 width: mobilePage
                     ? width * MobilePage.imageWidthFactor
@@ -69,7 +69,7 @@ class SlideThree extends GetView<SlideAnimationController> {
                   children: controller.images
                       .map(
                         (e) => Container(
-                          child: Image.network(
+                          child: Image.asset(
                             e,
                             fit: BoxFit.cover,
                           ),
@@ -89,9 +89,10 @@ class SlideThree extends GetView<SlideAnimationController> {
                     _title[controller.idx],
                     style: TextStyle(
                       fontSize: mobilePage
-                          ? MobilePage.headTextFontSize
-                          : WebPage.headTextFontSize,
+                          ? MobilePage.headTextFontSize * width / 800
+                          : min(WebPage.headTextFontSize * width / 1200, 60),
                       fontFamily: 'Times New Roman',
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),

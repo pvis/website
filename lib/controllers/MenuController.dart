@@ -25,7 +25,12 @@ class MenuController extends GetxController {
               : throw 'Could not launch $_url';
         },
         () => setMenuIndex(2),
-        () => setMenuIndex(3),
+        () async {
+          const _url = 'mailto://temp@gmail.com';
+          await canLaunch(_url)
+              ? await launch(_url)
+              : throw 'Could not launch $_url';
+        },
       ];
   GlobalKey<ScaffoldState> get scaffoldkey => _scaffoldKey;
 
