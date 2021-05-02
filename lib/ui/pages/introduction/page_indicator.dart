@@ -18,7 +18,7 @@ class _PageIndicatorState extends State<PageIndicator> {
   Widget build(BuildContext context) {
     return Container(
       height: 80.0,
-      width: 420.0,
+      width: 380.0,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -32,7 +32,7 @@ class _PageIndicatorState extends State<PageIndicator> {
           ),
           Container(
             height: 1.0,
-            width: 230.0,
+            width: 100.0,
             color: Colors.black38,
           ),
           GestureDetector(
