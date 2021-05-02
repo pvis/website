@@ -4,7 +4,7 @@ import 'package:website/ui/common/responsive.dart';
 import 'package:website/ui/components/route_appbar.dart';
 import 'package:website/ui/pages/contribution/contribution.dart';
 import 'package:website/ui/pages/introduction/intro.dart';
-import 'package:website/ui/pages/introduction/slide_intro.dart';
+import 'package:website/ui/pages/introduction/intro.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key, required this.title}) : super(key: key);
