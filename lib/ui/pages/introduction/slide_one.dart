@@ -78,7 +78,7 @@ class SlideOne extends GetView<SlideAnimationController> {
                 children: [
                   Text(
                     'PVIS',
-                    style: TextStyle(fontSize: 40 * width / 600),
+                    style: TextStyle(fontSize: 20 * width / 600),
                   ),
                   SizedBox(height: height / 20),
                   Row(
