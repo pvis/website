@@ -4,6 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:website/controllers/slide_animation_controller.dart';
+import 'package:website/ui/pages/introduction/page_four.dart';
 import 'package:website/ui/pages/introduction/slide_one.dart';
 import 'package:website/ui/pages/introduction/slide_three.dart';
 import 'package:website/ui/pages/introduction/slide_two.dart';
@@ -26,7 +27,6 @@ class _IntroPageState extends State<IntroPage> {
   void initState() {
     super.initState();
     _aController.addSlideChangeListener(() {
-      print('Slide!!');
       _controller.animateTo(_aController.curSlide * _height,
           duration: Duration(milliseconds: 500), curve: Curves.ease);
     });
@@ -34,7 +34,7 @@ class _IntroPageState extends State<IntroPage> {
 
   void startAnimation(bool isDown) {
     var _cur = _aController.curSlide;
-    if (isDown && _cur < 2) {
+    if (isDown && _cur < 3) {
       _cur++;
       _aController.setCurSlide(_cur);
     } else if (!isDown && _cur > 0) {
@@ -110,6 +110,13 @@ class _IntroPageState extends State<IntroPage> {
                     height: _height,
                     width: double.infinity,
                     child: SlideThree(),
+                  ),
+                ),
+                SingleChildScrollView(
+                  child: Container(
+                    height: _height,
+                    width: double.infinity,
+                    child: SlideFour(),
                   ),
                 ),
               ],

@@ -37,7 +37,6 @@ class SlideAnimationController extends GetxController {
     _visible(false);
     Future.delayed(Duration(milliseconds: 300), () {
       _visible(true);
-      print('cur : $_cur / visible : $_visible');
     });
     _curSlide(_cur);
     _slideChangeListener!();
