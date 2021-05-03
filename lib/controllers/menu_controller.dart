@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 class MenuController extends GetxController {
   static MenuController get to => Get.find();
-  RxInt _selectedIndex = 0.obs;
+  final RxInt _selectedIndex = 0.obs;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _eventBloc = MenuEventBloc();
   MenuEventBloc get eventBloc => _eventBloc;

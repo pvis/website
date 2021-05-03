@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:website/controllers/MenuController.dart';
+import 'package:website/controllers/menu_controller.dart';
 import 'package:website/ui/pages/home.dart';
 
 void main() {

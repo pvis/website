@@ -20,21 +20,23 @@ class _IntroPageState extends State<IntroPage> {
   double _dragStart = 0;
   double _dragEnd = 0;
   double _height = 0;
-  int _cur = 0;
   bool _doingAnimation = false;
 
   @override
   void initState() {
-    Get.put(SlideAnimationController());
     super.initState();
+    _aController.addSlideChangeListener(() {
+      print('Slide!!');
+      _controller.animateTo(_aController.curSlide * _height,
+          duration: Duration(milliseconds: 500), curve: Curves.ease);
+    });
   }
 
   void startAnimation(bool isDown) {
+    var _cur = _aController.curSlide;
     if (isDown && _cur < 2) {
       _cur++;
       _aController.setCurSlide(_cur);
-      _controller.animateTo(_cur * _height,
-          duration: Duration(milliseconds: 500), curve: Curves.ease);
     } else if (!isDown && _cur > 0) {
       _cur--;
       _aController.setCurSlide(_cur);
@@ -47,7 +49,7 @@ class _IntroPageState extends State<IntroPage> {
   Widget build(BuildContext context) {
     _height = MediaQuery.of(context).size.height;
     _height = _height < 600 ? 600 : _height;
-
+    var _cur = _aController.curSlide;
     if (_cur != 0) {
       if (_timer != null && _timer!.isActive) _timer!.cancel();
       _timer = Timer(Duration(milliseconds: 100),

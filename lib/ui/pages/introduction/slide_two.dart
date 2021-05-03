@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:website/constants/mobile_page.dart';
 import 'package:website/constants/web_page.dart';
+import 'package:website/controllers/slide_animation_controller.dart';
 import 'package:website/ui/common/responsive.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
@@ -13,7 +15,7 @@ class _SlideTwoState extends State<SlideTwo> {
   final _player = YoutubePlayerControllerProvider(
     // Passing controller to widgets below.
     controller: YoutubePlayerController(
-      initialVideoId: 'CxMvQkcdPl8',
+      initialVideoId: 'UfhOcQk-GpQ',
       params: const YoutubePlayerParams(
         startAt: Duration(minutes: 1, seconds: 36),
         showControls: true,
@@ -82,6 +84,18 @@ class _SlideTwoState extends State<SlideTwo> {
                 ),
               ),
             ),
+
+            Align(
+              alignment: Alignment(0, 0.9),
+              child: GetBuilder<SlideAnimationController>(
+                builder: (controller) => IconButton(
+                  icon: Icon(Icons.arrow_circle_down),
+                  onPressed: () {
+                    controller.setCurSlide(2);
+                  },
+                ),
+              ),
+            )
           ],
         ),
       ),

@@ -13,7 +13,7 @@ class SlideAnimationController extends GetxController {
 
   final List<String> images = [
     'assets/personal_infotainment.png',
-    'assets/personal_infotainment.png',
+    'assets/public_infotainment.png',
   ];
 
   final List<Color> colors = [
@@ -40,5 +40,11 @@ class SlideAnimationController extends GetxController {
       print('cur : $_cur / visible : $_visible');
     });
     _curSlide(_cur);
+    _slideChangeListener!();
+  }
+
+  VoidCallback? _slideChangeListener;
+  void addSlideChangeListener(VoidCallback slideChangeListener) {
+    _slideChangeListener = slideChangeListener;
   }
 }
