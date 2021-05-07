@@ -17,12 +17,12 @@ class _SlideTwoState extends State<SlideTwo> {
     controller: YoutubePlayerController(
       initialVideoId: 'Os2xvJTYLjg',
       params: const YoutubePlayerParams(
-        startAt: Duration(minutes: 1, seconds: 36),
+        // startAt: Duration(minutes: 1, seconds: 36),
         showControls: true,
         showFullscreenButton: false,
-        desktopMode: true,
+        // desktopMode: true,
         privacyEnhanced: true,
-        useHybridComposition: false,
+        useHybridComposition: true,
       ),
     ),
     child: YoutubePlayerIFrame(),
@@ -55,8 +55,9 @@ class _SlideTwoState extends State<SlideTwo> {
             ),
             //image
             Align(
-              alignment:
-                  mobilePage ? MobilePage.youtubeAlign : WebPage.youtubeAlign,
+              alignment: !Responsive.isDesktop(context)
+                  ? MobilePage.youtubeAlign
+                  : WebPage.youtubeAlign,
               child: Container(
                 height: mobilePage
                     ? height * MobilePage.imageHeightFactor
@@ -68,19 +69,40 @@ class _SlideTwoState extends State<SlideTwo> {
               ),
             ),
 
-            Align(
-              alignment:
-                  mobilePage ? MobilePage.headTextAlign : Alignment(-0.8, -0.6),
-              child: Container(
-                child: Text(
-                  'PVIS Concepts',
-                  style: TextStyle(
-                    fontSize: mobilePage
-                        ? MobilePage.headTextFontSize
-                        : WebPage.headTextFontSize,
-                    fontFamily: 'Times New Roman',
-                    fontWeight: FontWeight.bold,
-                  ),
+            Expanded(
+              child: Align(
+                alignment: !Responsive.isDesktop(context)
+                    ? MobilePage.headTextAlign
+                    : Alignment(-0.8, -0.5),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'PVIS Concepts',
+                      style: TextStyle(
+                        fontSize: mobilePage
+                            ? MobilePage.headTextFontSize
+                            : WebPage.headTextFontSize,
+                        fontFamily: 'Times New Roman',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        '    Go to Youtube',
+                        style: TextStyle(
+                          fontSize: mobilePage
+                              ? MobilePage.headTextFontSize * 1 / 2
+                              : WebPage.headTextFontSize * 1 / 2,
+                          fontFamily: 'Times New Roman',
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
