@@ -93,7 +93,7 @@ class SlideOne extends GetView<SlideAnimationController> {
                       Container(
                         width: width / 2.7,
                         child: Text(
-                          'Infotainment Service System for Public Vehicle',
+                          'Infotainment Services for Public Vehicle',
                           style: TextStyle(fontSize: 16 * width / 600),
                         ),
                       ),
@@ -130,7 +130,7 @@ class SlideOne extends GetView<SlideAnimationController> {
                       Container(
                         width: width * 0.7,
                         child: Text(
-                          'Infotainment Service System for Public Vehicle',
+                          'Infotainment Services for Public Vehicle',
                           style: TextStyle(
                               fontSize: min<double>(25, 50 * width / 600)),
                         ),

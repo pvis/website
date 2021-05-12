@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     var home = HomePage(title: 'Home');
     Get.put(MenuController());
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'PVIS',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
